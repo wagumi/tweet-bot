@@ -1,0 +1,7 @@
+{
+  "channelId": "1126...6853",
+  "emojiName": "✅",
+  "numberOfReactionsRequired": 1,
+  "tweetsFilePath": "./tweets.json",
+  "baseTwitterUrl": "https://twitter.com/xxxx/status/"
+}
