@@ -16,7 +16,11 @@ jobs:
         run: npm install
       - name: create .env
         run: |
-          echo "DISCORD_TOKEN=${{ secrets.DISCORD_TOKEN }}" >> .env
+          echo "ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}" >> .env
+          echo "ACCESS_TOKEN_SECRET=${{ secrets.ACCESS_TOKEN_SECRET }}" >> .env
+          echo "API_KEY=${{ secrets.API_KEY }}" >> .env
+          echo "API_KEY_SECRET=${{ secrets.API_KEY_SECRET }}" >> .env
+          echo "DISCORD_BOT_TOKEN=${{ secrets.DISCORD_BOT_TOKEN }}" >> .env
       - name: rsync deployments
         uses: burnett01/rsync-deployments@5.2
         with:

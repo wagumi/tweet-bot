@@ -2,17 +2,19 @@
 
 ## Description
 
-Discord bot to send and remove tweets managed in a channel only by members in the channel. By setting this bot up in your Discord servers, you don't have to rely on TweetDeck anymore for managing your team/project's Twitter account but basic operations (tweet, remove and reply) can be done from your Discord server.
+Discord bot to send and remove tweets for your team/project Twitter account from a channel only accessible to its members (e.g. moderators). By installing this bot in your Discord server, you don't have to rely on TweetDeck anymore. The members in the specific channel should be able to do basic operations (tweet, remove and reply) from your Discord server.
 
-## Production deployment for the first time
+## Production deployment
+
+To start the bot for the first time,
 
 ```
-(ssh to the Wagumi production server and move to the directory)
-cp tweets.json.sample
+(after the deployment triggered by the GitHub action, ssh to the production server and move to the directory)
+cp tweets.json.sample tweets.json
 pm2 start pm2.config.js
 ```
 
-To restart the server manually,
+To restart the bot manually,
 
 ```
 pm2 restart tweet-bot
