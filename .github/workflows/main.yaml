@@ -1,0 +1,33 @@
+name: DEPLOY
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: install node modules
+        run: npm install
+      - name: create .env
+        run: |
+          echo "ACCESS_TOKEN=${{ secrets.ACCESS_TOKEN }}" >> .env
+          echo "ACCESS_TOKEN_SECRET=${{ secrets.ACCESS_TOKEN_SECRET }}" >> .env
+          echo "API_KEY=${{ secrets.API_KEY }}" >> .env
+          echo "API_KEY_SECRET=${{ secrets.API_KEY_SECRET }}" >> .env
+          echo "DISCORD_BOT_TOKEN=${{ secrets.DISCORD_BOT_TOKEN }}" >> .env
+      - name: rsync deployments
+        uses: burnett01/rsync-deployments@5.2
+        with:
+          switches: -avzr --delete --exclude="tweets.json"
+          path: ./
+          remote_path: /home/wagumi/apps/tweet-bot
+          remote_host: apps.wagumi.xyz
+          remote_user: wagumi
+          remote_port: 57822
+          remote_key: ${{ secrets.SSH_PRIVATE_KEY }}
